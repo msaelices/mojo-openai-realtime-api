@@ -1,5 +1,9 @@
-from tests.xxx import test_xxx
+from tests import test_api
+from tests import test_audio
+from tests import test_client
 
 
 fn main() raises:
-    test_xxx()
+    test_api.main()
+    test_audio.main()
+    test_client.main()
