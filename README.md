@@ -28,9 +28,7 @@ This software is in a early stage of development, using the Mojo nightly version
 
 ## TODO
 
-- [ ] Iterations instead of loading the whole file into memory
-- [ ] CSV writing
-- [ ] Optimizations leveraging SIMD
+- [ ] Everything
 
 ## Contributing
 
