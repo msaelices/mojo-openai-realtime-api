@@ -18,7 +18,7 @@ This software is in a early stage of development, using the Mojo nightly version
 2. **Add the openai-realtime-client Package** (at the top level of your project):
 
     ```bash
-    magic add opensai-realtime-client
+    magic add openai-realtime-client
     ```
 
 ## Example of usage
