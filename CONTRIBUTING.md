@@ -3,5 +3,5 @@
 ## How to build this package
 
 ```bash
-mojo package openai-realtime-client -o openai-realtime-client.mojopkg
+mojo package openai_rt_client -o openai_rt_client.mojopkg
 ``

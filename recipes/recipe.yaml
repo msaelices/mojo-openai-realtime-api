@@ -4,7 +4,7 @@ context:
   version: "0.1.0"
 
 package:
-  name: "openai-realtime-client"
+  name: "openai_rt_client"
   version: 0.1.0
 
 source:
@@ -13,7 +13,7 @@ source:
 
 build:
   script:
-    - magic run mojo package openai_rt_api -o ${PREFIX}/openai-realtime-client.mojopkg
+    - magic run mojo package openai_rt_api -o ${PREFIX}/openai_rt_client.mojopkg
 
 requirements:
   run:

@@ -1,6 +1,6 @@
 # OpenAI Realtime Client in Mojo
 
-`mojo-openai-realtime-client` is a library for connecting to OpenAI's Realtime API. 
+`openai_rt_client` is a library for connecting to OpenAI's Realtime API. 
 
 **The easiest way to get playing with the API right away** is to use the
 [**Realtime Console**](https://github.com/openai/openai-realtime-console), it uses
@@ -15,10 +15,10 @@ This software is in a early stage of development, using the Mojo nightly version
 
 1. **Install [Mojo nightly](https://docs.modular.com/mojo/manual/get-started) 🔥**
 
-2. **Add the openai-realtime-client Package** (at the top level of your project):
+2. **Add the openai_rt_client Package** (at the top level of your project):
 
     ```bash
-    magic add openai-realtime-client
+    magic add openai_rt_client
     ```
 
 ## Example of usage
@@ -36,4 +36,4 @@ Contributions are welcome! If you'd like to contribute, please follow the contri
 
 ## License
 
-mojo-openai-realtime-client is licensed under the [MIT license](LICENSE).
+openai_rt_client is licensed under the [MIT license](LICENSE).
