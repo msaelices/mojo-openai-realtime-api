@@ -1,0 +1,14 @@
+[project]
+authors = ["Manuel Saelices <msaelices@gmail.com>"]
+channels = ["conda-forge", "https://conda.modular.com/max-nightly"]
+description = "OpenAI Realtime Client in Mojo"
+name = "openai-realtime-client"
+platforms = ["linux-64", "darwin-64"]
+version = "0.1.0"
+
+[tasks]
+build = { cmd = "rattler-build build --recipe recipes -c https://conda.modular.com/max-nightly -c conda-forge --skip-existing=all", env = {MODULAR_MOJO_IMPORT_PATH = "$CONDA_PREFIX/lib/mojo"} }
+publish = { cmd = "bash scripts/publish.sh", env = { PREFIX_API_KEY = "$PREFIX_API_KEY" } }
+
+[dependencies]
+max = ">=24.5.0,<25"
