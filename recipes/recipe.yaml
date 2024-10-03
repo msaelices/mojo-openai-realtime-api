@@ -13,7 +13,7 @@ source:
 
 build:
   script:
-    - magic run mojo package openai_rt_api -o ${PREFIX}/openai_rt_client.mojopkg
+    - magic run mojo package openai_rt_client -o ${PREFIX}/openai_rt_client.mojopkg
 
 requirements:
   run:
