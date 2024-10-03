@@ -36,13 +36,6 @@ fn test_uuid_variant() raises:
         assert_true(variant_condition, 'Variant is not 8, 9, a or b')
 
 
-fn dv_contains(dv: List[UUID], uuid: UUID) -> Bool:
-    for i in range(len(dv)):
-        if dv[i] == uuid:
-            return True
-    return False
-
-
 fn test_uuid_uniqueness() raises:
     var uuid_generator = UUIDGenerator(seed)
     var seen = List[UUID]()
@@ -51,7 +44,7 @@ fn test_uuid_uniqueness() raises:
     var start = now()
     for i in range(N):
         var uuid = uuid_generator.next()
-        assert_false(dv_contains(seen, uuid), 'UUID is not unique')
+        assert_false(uuid in seen, 'UUID is not unique')
         seen.append(uuid)
     #     if i % 1000 == 0:
     #         print('Progress: ', i, '/', N)

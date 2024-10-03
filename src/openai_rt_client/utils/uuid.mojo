@@ -57,7 +57,7 @@ struct MersenneTwister:
 
 
 @register_passable("trivial")
-struct UUID(Stringable, CollectionElement):
+struct UUID(Stringable, EqualityComparableCollectionElement):
     var bytes: StaticTuple[UInt8, 16]
 
     fn __init__(inout self):
@@ -75,6 +75,9 @@ struct UUID(Stringable, CollectionElement):
             if self.bytes[i] != other.bytes[i]:
                 return False
         return True
+
+    fn __ne__(self, other: Self) -> Bool:
+        return not (self == other)
 
     fn __str__(self) -> String:
         var result: String = ""
