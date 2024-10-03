@@ -1,4 +1,7 @@
-# Taken and adapted from https://github.com/basalt-org/basalt/blob/076de80812dde323d9de63ea8975ad1875243dc0/basalt/utils/uuid.mojo
+# Adapted from https://github.com/basalt-org/basalt/blob/076de80812dde323d9de63ea8975ad1875243dc0/basalt/utils/uuid.mojo
+
+from utils import StaticTuple
+
 
 @register_passable("trivial")
 struct MersenneTwister:
@@ -13,7 +16,7 @@ struct MersenneTwister:
     alias TEMPERING_MASK_B: Int32 = 0x9D2C5680
     alias TEMPERING_MASK_C: Int32 = 0xEFC60000
 
-    var state: StaticTuple[Self.N, Int32]
+    var state: StaticTuple[Int32, Self.N]
     var index: Int
 
     fn __init__(inout self, seed: Int):
@@ -22,7 +25,7 @@ struct MersenneTwister:
         alias D: Int32 = 0xFFFFFFFF
         
         self.index = Self.N
-        self.state = StaticTuple[Self.N, Int32]()
+        self.state = StaticTuple[Int32, Self.N]()
         self.state[0] = seed & D
         
         for i in range(1, Self.N):
@@ -55,10 +58,10 @@ struct MersenneTwister:
 
 @register_passable("trivial")
 struct UUID(Stringable, CollectionElement):
-    var bytes: StaticTuple[16, UInt8]
+    var bytes: StaticTuple[UInt8, 16]
 
     fn __init__(inout self):
-        self.bytes = StaticTuple[16, UInt8]()
+        self.bytes = StaticTuple[UInt8, 16]()
 
     fn __setitem__(inout self, index: Int, value: UInt8):
         self.bytes[index] = value
@@ -67,7 +70,7 @@ struct UUID(Stringable, CollectionElement):
         return self.bytes[index]
 
     fn __eq__(self, other: Self) -> Bool:
-        @unroll
+        @parameter
         for i in range(16):
             if self.bytes[i] != other.bytes[i]:
                 return False
@@ -77,13 +80,13 @@ struct UUID(Stringable, CollectionElement):
         var result: String = ""
         alias hex_digits: String = "0123456789abcdef"
 
-        @unroll
+        @parameter
         for i in range(16):
             if i == 4 or i == 6 or i == 8 or i == 10:
                 result += "-"
             result += (
-                hex_digits[(self.bytes[i] >> 4).to_int()]
-                + hex_digits[(self.bytes[i] & 0xF).to_int()]
+                hex_digits[int(self.bytes[i] >> 4)]
+                + hex_digits[int(self.bytes[i] & 0xF)]
             )
         return result
 
@@ -98,7 +101,7 @@ struct UUIDGenerator:
     fn next(inout self) -> UUID:
         var uuid = UUID()
 
-        @unroll
+        @parameter
         for i in range(16):
             uuid[i] = self.prng.next_ui8()
         

@@ -1,7 +1,10 @@
-from tests import test_api
-from tests import test_audio
-from tests import test_client
-from tests import test_event_handlers
+from tests import (
+    test_api,
+    test_audio,
+    test_client,
+    test_event_handlers,
+    test_uuid,
+)
 
 
 def main():
@@ -9,3 +12,4 @@ def main():
     test_audio.run()
     test_client.run()
     test_event_handlers.run()
+    test_uuid.run()
