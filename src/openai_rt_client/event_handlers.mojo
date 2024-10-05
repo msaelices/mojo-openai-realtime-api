@@ -69,6 +69,7 @@ struct EventHandlerCallback[
         return self.name != other.name
 
 
+@value
 struct RealtimeEventHandler[P: PayloadType]:
     """
     Inherited struct for RealtimeAPI and RealtimeClient.
