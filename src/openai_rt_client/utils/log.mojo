@@ -1,4 +1,5 @@
 from collections import Dict
+from sys import stdout
 
 alias DEBUG = 0
 alias INFO = 1
@@ -8,9 +9,11 @@ alias ERROR = 3
 
 @value
 struct Logger:
+    var file: FileDescriptor
     var level: Int
 
-    fn __init__(inout self, level: Int = INFO):
+    fn __init__(inout self, /, file: FileDescriptor = stdout, level: Int = INFO):
+        self.file = file
         self.level = level
 
     fn set_log_level(inout self, level: Int):
@@ -30,7 +33,7 @@ struct Logger:
 
     fn _log(self, level: Int, msg: String):
         if level >= self.level:
-            print('[' + _level_to_str(level) + ']' + msg)
+            print('[' + _level_to_str(level) + ']' + msg, file=self.file)
 
 
 @always_inline
