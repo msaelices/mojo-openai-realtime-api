@@ -3,6 +3,7 @@ from memory import Pointer, Reference
 from python import Python, PythonObject
 
 from openai_rt_client.event_handlers import PayloadType, RealtimeEventHandler
+from openai_rt_client.utils.log import Logger, DEBUG, INFO
 
 
 @value
@@ -25,6 +26,8 @@ struct RealtimeAPI[
     """Whether to enable debug mode."""
     var ws: Optional[PythonObject]
     """WebSocket connection."""
+    var logger: Logger
+    """Logger instance."""
 
     def __init__(inout self, event_handler: RealtimeEventHandler[P], url: String, api_key: String, debug: Bool = False):
         """
@@ -41,4 +44,5 @@ struct RealtimeAPI[
         self.api_key = api_key
         self.debug = debug
         self.ws = Optional[PythonObject](None)
+        self.logger = Logger(level=DEBUG if debug else INFO)
 
