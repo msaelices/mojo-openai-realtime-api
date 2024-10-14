@@ -23,7 +23,9 @@ struct EventHandlerCallback[
     """
     alias event_type = Dict[String, P]
     # TODO: Wait for Mojo to generalize escaping fn (closures) and non-escaping ones
-    alias func_type = fn (Self.event_type) escaping -> None
+    # alias func_type = fn (event: Self.event_type) capturing -> None
+    # For now, we need to use non-capturing (escaping) functions
+    alias func_type = fn (event: Self.event_type) escaping -> None
     var name: String
     var callback: Self.func_type
 
