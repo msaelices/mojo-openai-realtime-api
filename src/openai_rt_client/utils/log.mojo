@@ -33,7 +33,7 @@ struct Logger:
 
     fn _log(self, level: Int, msg: String):
         if level >= self.level:
-            print('[' + _level_to_str(level) + ']' + msg, file=self.file)
+            print('[' + _level_to_str(level) + '] ' + msg, file=self.file, flush=True)
 
 
 @always_inline
