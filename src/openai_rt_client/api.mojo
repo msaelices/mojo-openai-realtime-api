@@ -10,7 +10,7 @@ struct RealtimeAPI[
     is_mutable: Bool,
     P: PayloadType,
     //,
-    life: Lifetime[is_mutable].type,
+    life: Origin[is_mutable].type,
 ]:
     """RealtimeAPI is a struct that holds the configuration for the Realtime API client."""
 
