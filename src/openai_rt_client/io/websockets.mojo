@@ -174,8 +174,8 @@ fn receive_message[
             # next loop is basically reading 4 or 8 bytes (big endian)
             # (theses will form a number that is the message size)
             for i in range(byte_size_of_message_size):
-                bytes |= UInt64(int(read_byte(ws))) << (
-                    (int(byte_size_of_message_size) - 1 - i) * 8
+                bytes |= int(read_byte(ws)) << (
+                    int(byte_size_of_message_size - 1 - i) * 8
                 )
             message_size = int(bytes)
             if bytes & (1 << 63) != 0:
@@ -245,4 +245,3 @@ fn send_message(inout ws: PythonObject, message: String) -> Bool:
     except e:
         print(e)
         return False
-    return False
